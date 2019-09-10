@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="peminjaman4" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=NIO-PC\SQLEXPRESS;Initial Catalog=peminjaman4;Integrated Security=True" SettingsObjectName="Aplikasi_peminjaman_barang.Properties.Settings" SettingsPropertyName="peminjaman4ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.barang" Member="barangs">
+    <Type Name="barang">
+      <Column Name="id_barang" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nama_barang" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="barang_detailpeminjaman" Member="detailpeminjamans" ThisKey="id_barang" OtherKey="id_barang" Type="detailpeminjaman" />
+    </Type>
+  </Table>
+  <Table Name="dbo.detailpeminjaman" Member="detailpeminjamans">
+    <Type Name="detailpeminjaman">
+      <Column Name="id_peminjaman" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_barang" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_pengguna" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="waktu_peminjaman" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="waktu_pemulangan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="barang_detailpeminjaman" Member="barang" ThisKey="id_barang" OtherKey="id_barang" Type="barang" IsForeignKey="true" />
+      <Association Name="pengguna_detailpeminjaman" Member="pengguna" ThisKey="id_pengguna" OtherKey="id_pengguna" Type="pengguna" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pengguna" Member="penggunas">
+    <Type Name="pengguna">
+      <Column Name="id_pengguna" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="nama" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="status_pengguna" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="pengguna_detailpeminjaman" Member="detailpeminjamans" ThisKey="id_pengguna" OtherKey="id_pengguna" Type="detailpeminjaman" />
+    </Type>
+  </Table>
+</Database>
